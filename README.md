@@ -2,6 +2,9 @@
 
 Made with my mentor at [Bloc](http://bloc.io).
 
+Pushed on Heroku as bloccit22
+
+https://bloccit22.herokuapp.com/ | https://git.heroku.com/bloccit22.git
 
 This README would normally document whatever steps are necessary to get the
 application up and running.
