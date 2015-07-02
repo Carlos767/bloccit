@@ -2,3 +2,8 @@
 
 require ::File.expand_path('../config/environment', __FILE__)
 run Rails.application
+
+Rails.application.routes.draw do
+  resources :homes, only: [:show]
+  root to: "homes#show"
+end
