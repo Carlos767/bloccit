@@ -2,7 +2,7 @@ require 'faker'
 
 # Create Posts
 50.times do
-	Post .create!(
+	Post.create!(
 		title: Faker::Lorem.sentence,
 		body:  Faker::Lorem.paragraph
 	)
@@ -16,6 +16,7 @@ posts = Post.all
 		body: Faker::Lorem.paragraph
 	)
 end
+
 
 puts "Seed finished"
 puts "#{Post.count} posts created"
