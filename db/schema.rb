@@ -11,7 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150702215800) do
+ActiveRecord::Schema.define(version: 20150706235101) do
+
+  create_table "advertisings", force: :cascade do |t|
+    t.string   "title"
+    t.string   "string"
+    t.string   "copy"
+    t.string   "text"
+    t.integer  "price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "answers", force: :cascade do |t|
     t.text     "body"
