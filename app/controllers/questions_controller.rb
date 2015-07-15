@@ -1,4 +1,4 @@
-class QuestionController < ApplicationController
+class QuestionsController < ApplicationController
   def index
   	@question = Question.all
   end
@@ -12,8 +12,8 @@ class QuestionController < ApplicationController
   end
 
   def create
-    @question = question.new(params.require(:question).permit(:title, :body))
-    raise
+    @question = Question.new(params.require(:question).permit(:title, :body))
+    
     if @question.save
       flash[:notice] = "Question was saved."
       redirect_to @question
@@ -23,15 +23,18 @@ class QuestionController < ApplicationController
     end
   end
 
-  def resolved
-  	check_box("question", "validated")
-  	input name="question[validated]" type="hidden" value="0" 
- 	input checked="checked" type="checkbox" id="question_validated" name="question[validated]" value="1"
- end
-
-
-
   def edit
   	@question = Question.find(params[:id])
+  end
+
+  def update
+  	@question = Question.find(params[:id])
+
+  	if @question.update_attributes(params.require(:question).permit(:title, :body))
+  		redirect_to @question, notice: "Question was updated!"
+  	else
+  		flash[:error] = "Questions failed to update."
+  		render :edit
+  	end
   end
 end
