@@ -1,12 +1,8 @@
 Rails.application.routes.draw do
 
-  get 'question/index'
+resources :questions
 
-  get 'question/show'
-
-  get 'question/new'
-
-  get 'question/edit'
+resources :advertisements
 
  resources :posts
 
@@ -15,6 +11,6 @@ Rails.application.routes.draw do
   root to: 'welcome#index'
 
  
-  resources :advertisements
+  
    
 end

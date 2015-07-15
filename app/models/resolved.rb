@@ -1,3 +1,3 @@
-class Answer < ActiveRecord::Base
+class Resolved < ActiveRecord::Base
   belongs_to :question
 end
