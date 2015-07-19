@@ -38,6 +38,7 @@ gem 'social-share-button'
 gem 'devise'
 gem 'faker'
 gem 'figaro', '1.0'
+gem 'pundit'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
