@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
 
+  get 'summaries/index'
+
+  get 'summaries/new'
+
+  get 'summaries/show'
+
   devise_for :users
 resources :questions
 
