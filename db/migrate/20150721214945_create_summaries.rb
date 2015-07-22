@@ -1,7 +1,7 @@
 class CreateSummaries < ActiveRecord::Migration
   def change
     create_table :summaries do |t|
-      t.string :name
+      t.references :post, index: true, foreign_key: true
       t.text :description
 
       t.timestamps null: false

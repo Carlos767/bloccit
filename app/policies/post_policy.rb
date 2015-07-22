@@ -4,7 +4,7 @@ class PostPolicy < ApplicationPolicy
   end
 
   class Scope
-     attr_reader :user, :Scope
+     attr_reader :user, :scope
 
      def initializer(user, scope)
      	@user = user
