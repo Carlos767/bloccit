@@ -39,6 +39,7 @@ gem 'devise'
 gem 'faker'
 gem 'figaro', '1.0'
 gem 'pundit'
+gem 'redcarpet'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
