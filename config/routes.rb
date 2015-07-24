@@ -7,12 +7,11 @@ Rails.application.routes.draw do
   get 'summaries/show'
 
   devise_for :users
-resources :questions
-
-resources :advertisements
-
- resources :topics do
- 	resources :posts, except: [:index]
+  resources :users, only: [:update]
+  resources :questions
+  resources :advertisements
+  resources :topics do
+  resources :posts, except: [:index]
  end
 
   get 'about' => 'welcome#about'
