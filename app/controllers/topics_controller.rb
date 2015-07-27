@@ -1,7 +1,8 @@
 class TopicsController < ApplicationController
   def index
-  	@topics = Topic.all
-  	#authorize @topics
+  	@topics = Topic.paginate(page: params[:page])
+    WillPaginate.per_page = 50
+  	authorize @topics
   end
 
   def new
@@ -11,8 +12,8 @@ class TopicsController < ApplicationController
 
   def show
   	@topic = Topic.find(params[:id])
-  	@posts = @topic.posts
-  	#authorize @topic
+  	@posts = @topic.posts.paginate(page: params[:page])
+    WillPaginate.per_page = 100
   end
 
   def edit
@@ -45,7 +46,7 @@ class TopicsController < ApplicationController
   private
 
   def topic_params
-    params.require(:topic).permit):title, :body)
+    params.require(:topic).permit(:name, :description)
   end
 
 end
