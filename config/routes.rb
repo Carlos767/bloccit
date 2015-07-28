@@ -1,5 +1,13 @@
 Rails.application.routes.draw do
 
+  get 'comments/index'
+
+  get 'comments/new'
+
+  get 'comments/show'
+
+  get 'comments/_form'
+
   get 'summaries/index'
 
   get 'summaries/new'
@@ -12,7 +20,7 @@ Rails.application.routes.draw do
   resources :advertisements
 
   resources :topics do
-  	resources :posts, except: [:index]
+  	resources :posts, except: [:index], only: [:comments]
  end
 
   get 'about' => 'welcome#about'

@@ -1,0 +1,30 @@
+<%= form_for [topic, post, comment] do |f| %>
+  <% if comment.errors.any? %>
+    <div class="alert alert-danger">
+       <h4>There are <%= pluralize(comment.errors.count, "error") %>.</h4>
+      <ul>
+        <% comment.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+       <% end %>
+      </ul>
+   </div>
+ <% end %>
+ <%= form_group_tag(comment.errors[:body]) do %>
+    <%= f.label :body %>
+    <%= f.text_area :body, rows: 8, class: 'form-control', placeholder: "Enter comment text" %>
+  <% end %>
+  <% if current_user.image? %>
+         <div class="form-group">
+           <p>Current image</p>
+           <%= image_tag( current_user.image.profile.url ) %>
+         </div>
+       <% end %>
+       <div class="form-group">
+         <%= f.label :image %>
+         <%= f.file_field :image %>
+         <%= f.hidden_field :image_cache %>
+       </div>
+ <div class="form-group">
+    <%= f.submit "Save", class: 'btn btn-success' %>
+ </div>
+<% end %>
