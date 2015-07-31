@@ -11,6 +11,10 @@ class PostPolicy < ApplicationPolicy
      	@scope = scope
      end
 
+     def destroy?
+        user.present? && (record.user == user || user.admin? || user.moderator?)
+     end
+
      def resolve
      	if user.admin? || user.moderator?
      		scope.all
@@ -19,8 +23,8 @@ class PostPolicy < ApplicationPolicy
      	end
      end
  end
- 
 end
+
 
 
   
