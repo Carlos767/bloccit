@@ -1,0 +1,5 @@
+<h1><%= @comments.title %></h1>
+
+<% link_to "Edit", edit_comment_path(@comment), class: 'btn btn-success' %>
+
+<p><%= @comment.body %></P>
