@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-  describe Vote do
-   describe "value validation" do
+ describe Vote do
+ 	describe "value validation" do
 
       it "allows -1" do
         value = Vote.create(value: -1)
