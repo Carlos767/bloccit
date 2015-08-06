@@ -5,8 +5,8 @@ class Post < ActiveRecord::Base
 	belongs_to :topic
 	has_one :summary
     
+    default_scope { order('rank DESC') }
 
-	default_scope { order('created_at DESC') }
 
     validates :title, length: { minimum: 5 }, presence: true
     validates :body, length: { minimum: 20 }, presence: true
@@ -21,9 +21,20 @@ class Post < ActiveRecord::Base
     	markdown_to_html(body)
     end
 
+    def points
+        votes.sum(:value).to_i
+    end
+
+    def up_votes
+        votes.where(value: 1).count
+    end
+
+    def down_votes
+        votes.where(value: -1).count
+    end
 
 
- default_scope { order('rank DESC') }
+
 
   
 
@@ -36,6 +47,9 @@ class Post < ActiveRecord::Base
     new_rank = points + age_in_days
  
     update_attribute(:rank, new_rank)
+  end
+
+  def save_with_initial_vote
   end
 
 
