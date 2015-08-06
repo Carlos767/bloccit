@@ -1,33 +1,20 @@
 require 'rails_helper'
-
-RSpec.describe VotesController, type: :controller do
-
-  describe "GET #index" do
-    it "returns http success" do
-      get :index
-      expect(response).to have_http_status(:success)
+ 
+describe VotesController do
+ 
+  include TestFactories
+  include Devise::TestHelpers
+ 
+  describe '#up_vote' do
+    it "adds an up-vote to the post" do
+      request.env["HTTP_REFERER"] = '/'
+      @user = authenticated_user
+      @post = associated_post
+      sign_in @user
+ 
+      expect {
+        post( :up_vote, post_id: @post.id )
+      }.to change{ @post.up_votes }.by 1
     end
   end
-
-  describe "GET #new" do
-    it "returns http success" do
-      get :new
-      expect(response).to have_http_status(:success)
-    end
-  end
-
-  describe "GET #show" do
-    it "returns http success" do
-      get :show
-      expect(response).to have_http_status(:success)
-    end
-  end
-
-  describe "GET #edit" do
-    it "returns http success" do
-      get :edit
-      expect(response).to have_http_status(:success)
-    end
-  end
-
 end

@@ -1,12 +1,8 @@
 class Vote < ActiveRecord::Base
- has_many :comments, dependent: :destroy
- has_many :votes, dependent: :destroy
  belongs_to :user
  belongs_to :post
  validates :value, inclusion: { in: [-1, 1], message: "%{value} is not a valid vote." }
  after_save :update_post
-
- default_scope { order('rank DESC') }
 
   private
 
