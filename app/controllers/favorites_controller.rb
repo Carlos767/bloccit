@@ -4,7 +4,6 @@ def create
 	favorite = current_user.favorites.build(post: post)
 
 	if favorite.save
-     	@post.add_favorite
      		flash[:notice] = "Favorite was added!"
      		redirect_to [post.topic, post]
      	else
@@ -15,12 +14,12 @@ def create
 
     def destroy
     	@post = Post.find(params[:post_id])
-    	@favorite = Favorite.find(params[:id])
-    	authorize @favorite
+    	favorite = Favorite.find(params[:id])
+    	authorize favorite
 
     	if favorite.destroy
     		flash[:notice] = "This post is not a favorite anymore."
-    		redirect_to @post
+    		redirect_to [@post.topic, @post]
     	else
     		flash[:error] = "There was an error, please try again."
     		render :show
