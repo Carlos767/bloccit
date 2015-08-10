@@ -1,8 +1,7 @@
 class TopicsController < ApplicationController
+  
   def index
-  	@topics = Topic.paginate(page: params[:page])
-    WillPaginate.per_page = 50
-  	authorize @topics
+  	@topics = (current_user.try(:topics) || Topic.privately_viewable).paginate(page: params[:page], per_page: 10)
   end
 
   def new
@@ -11,9 +10,10 @@ class TopicsController < ApplicationController
   end
 
   def show
-  	@topic = Topic.find(params[:id])
+  	@topic = current_user.topics.find_by_id(params[:id])
   	@posts = @topic.posts.paginate(page: params[:page])
     WillPaginate.per_page = 100
+    authorize @topic
   end
 
   def edit
