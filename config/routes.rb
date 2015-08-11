@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
 
+  
+
   get 'summaries/index'
 
   get 'summaries/new'
@@ -11,6 +13,7 @@ Rails.application.routes.draw do
   resources :users, only: [:update]
   resources :questions
   resources :advertisements
+  resources :show
 
   resources :topics do
   	resources :posts, except: [:index] do
