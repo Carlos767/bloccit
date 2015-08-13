@@ -1,7 +1,6 @@
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  def voted(post)
 
     devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :confirmable
     has_many :posts
@@ -9,6 +8,9 @@ class User < ActiveRecord::Base
     has_many :favorites, dependent: :destroy
     has_many :votes, dependent: :destroy
     mount_uploader :avatar, AvatarUploader
+
+      def voted(post)
+      end
 
     def favorited(post)
       favorites.where(post_id: post.id).first
@@ -21,5 +23,5 @@ class User < ActiveRecord::Base
   	def moderator?
   		role == 'moderator'
   	end
-  end
+  
 end
