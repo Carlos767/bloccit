@@ -24,4 +24,29 @@ require 'rails_helper'
     end
  
    end
+
+   describe "User visiting own profile" do
+
+    include Warden::Test::Helpers
+    Warden.test_mode!
+
+    user = FactoryGirl.create(:user)
+    login_as(user, :scope => :user)
+
+    FactoryGirl.define do
+      factory :user do
+        email 'test@example.com'
+        password 'f4k3p455w0rd'
+      end
+    end
+
+    before do
+      @user = authenticated_admin
+      @post = associated_post(user: @user)
+      @comment = Comment.new(user: @user, post: @post, body: "A Comment")
+      allow(@comment).to receive(:send_favorite_emails)
+      @comment.save!
+   end
  end
+end
+
