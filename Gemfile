@@ -45,6 +45,7 @@ gem 'mini_magick'
 gem 'fog'
 gem 'newrelic_rpm'
 gem 'will_paginate', '~> 3.0.5'
+gem 'factory_girl_rails', '~> 4.0'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
