@@ -10,18 +10,18 @@ Rails.application.routes.draw do
   get 'summaries/show'
 
   devise_for :users
-  resources :users, only: [:update]
+  resources :users, only: [:update, :show, :index]
   #resources :questions
   #resources :advertisements
   #resources :show
 
   resources :topics do
-  	resources :posts, except: [:index] do
+  	resources :posts, except: [:index], controller: 'topics/posts' do
       resources :comments, only: [:create, :destroy]
     end
  end
 
- resources :posts, only: [] do
+ resources :posts, only: [:index] do
     resources :comments, only: [:create, :destroy]
     resources :favorites, only: [:create, :destroy]
     post '/up-vote' => 'votes#up_vote', as: :up_vote
