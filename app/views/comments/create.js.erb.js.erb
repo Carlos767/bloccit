@@ -1,6 +1,7 @@
 <% if @comment.valid? %>
    $('.js-comments').prepend("<%= escape_javascript(render(@comment)) %>");
    $('.new-comment').html("<%= escape_javascript(render partial: 'comments/form', locals: { post: @post, comment: @new_comment }) %>");
+   $("#comment_preview").append("<%= escape_javascript(render :partial => @comment, :locals => { :post => @post }) %>");
  <% else %>
    $('.new-comment').html("<%= escape_javascript(render partial: 'comments/form', locals: { post: @post, comment: @comment }) %>");
  <% end %>
