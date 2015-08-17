@@ -4,7 +4,7 @@
    <% end %>
    <div class="media-body">
      <h4 class="media-heading">
-       <%= link_to user.name, user %>
+       <%= link_to (user.name || user.email), user %>
      </h4>
      <small>
        <%= pluralize(user.posts_count, 'post') %>,
