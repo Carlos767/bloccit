@@ -11,12 +11,31 @@
        <div class="tab-pane" id="comments">
          <%= render @comments %>
        </div>
+       <small>
+       <div class='js-comments-count'><%= pluralize(@user.comments.count, 'comment') %></div>
+         </small>
      </div>
    </div>
  </div>
  
- <h2>Posts</h2>
- <%= render @posts %>
- 
- <h2>Comments</h2>
- <%= render @comments %>
+
+<div>
+
+  <!-- Nav tabs -->
+  <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active"><a href="#posts" aria-controls="posts" role="tab" data-toggle="tab">Posts</a></li>
+    <li role="presentation"><a href="#comments" aria-controls="comments" role="tab" data-toggle="tab">Comments</a></li>
+  </ul>
+
+  <!-- Tab panes -->
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="home">
+      <%= render @posts %>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="profile">
+      <%= render @comments %>
+    </div>
+
+  </div>
+
+</div>

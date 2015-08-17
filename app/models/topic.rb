@@ -5,6 +5,6 @@ class Topic < ActiveRecord::Base
 	scope :privately_viewable, -> {where(public: false)}
 	WillPaginate.per_page = 100
 
-	validates :name, length: { minumum: 5 }, presence: true
-	validates :description, length: { minumum: 5 }, presence: true
+	# validates :title, length: { minumum: 5 }, presence: true
+	# validates :body, length: { minumum: 5 }, presence: true
 end
